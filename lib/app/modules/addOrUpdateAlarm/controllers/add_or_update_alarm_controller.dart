@@ -142,6 +142,11 @@ class AddOrUpdateAlarmController extends GetxController {
   final RxString guardian = ''.obs;
   final RxBool isCall = false.obs;
 
+  final RxInt progressiveInterval = 5.obs;
+  final RxInt progressiveStartBefore = 30.obs;
+  final RxBool isProgressiveEnabled = false.obs;
+  final List<DateTime> progressiveAlarmTimes = [] as List<DateTime>;
+
   void toggleIsPlaying() {
     isPlaying.toggle();
   }
@@ -783,6 +788,10 @@ class AddOrUpdateAlarmController extends GetxController {
       isQrEnabled.value = alarmRecord.value.isQrEnabled;
       qrValue.value = alarmRecord.value.qrValue;
       detectedQrValue.value = alarmRecord.value.qrValue;
+      
+      isProgressiveEnabled.value = alarmRecord.value.isProgressiveEnabled;
+      progressiveStartBefore.value = alarmRecord.value.progressiveStartBefore;
+      progressiveInterval.value = alarmRecord.value.progressiveInterval;
 
       alarmID = alarmRecord.value.alarmID == ''
           ? const Uuid().v4()
@@ -878,6 +887,9 @@ class AddOrUpdateAlarmController extends GetxController {
       'isSharedAlarmEnabled': isSharedAlarmEnabled.value,
       'offsetDuration': offsetDuration.value,
       'isOffsetBefore': isOffsetBefore.value,
+      'isProgressiveEnabled': isProgressiveEnabled.value,
+      'progressiveStartBefore': progressiveStartBefore.value,
+      'progressiveInterval': progressiveInterval.value,
     });
 
     addListeners();
@@ -1075,6 +1087,15 @@ class AddOrUpdateAlarmController extends GetxController {
       guardian: guardian.value,
       isCall: isCall.value,
       ringOn: isFutureDate.value,
+      isProgressiveEnabled: isProgressiveEnabled.value,
+      progressiveInterval: progressiveInterval.value,
+      progressiveStartBefore: progressiveStartBefore.value,
+      progressiveAlarmTimes: Utils.calculateProgressiveAlarmTimes(
+        progressiveInterval.value, 
+        progressiveStartBefore.value, 
+        isProgressiveEnabled.value, 
+        selectedTime.value,
+      ),
     );
   }
 
@@ -1336,6 +1357,9 @@ class AddOrUpdateAlarmController extends GetxController {
       guardian: guardian.value,
       isCall: isCall.value,
       ringOn: isFutureDate.value,
+      isProgressiveEnabled: isProgressiveEnabled.value,
+      progressiveInterval: progressiveInterval.value,
+      progressiveStartBefore: progressiveStartBefore.value,
     );
 
     if(homeController.isProfileUpdate.value)

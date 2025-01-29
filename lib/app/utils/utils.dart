@@ -76,6 +76,10 @@ class Utils {
     guardian: '',
     isCall: false,
     ringOn: false,
+    isProgressiveEnabled: false,
+    progressiveInterval: 5,
+    progressiveStartBefore: 30,
+    progressiveAlarmTimes: [],
   );
 
   static String formatDateTimeToHHMMSS(DateTime dateTime) {
@@ -268,6 +272,32 @@ class Utils {
 
   static double deg2rad(deg) {
     return deg * (pi / 180);
+  }
+
+  static List<DateTime> calculateProgressiveAlarmTimes(int progressiveInterval, int progressiveStartBefore, bool isProgressiveEnabled, DateTime alarmTime){
+    final List<DateTime> times = [];
+    if (!isProgressiveEnabled || progressiveStartBefore <= 0) {
+      return times;
+    }
+
+    final DateTime? finalAlarmDateTime = alarmTime;
+    
+    // Return if the alarm time couldn't be parsed
+    if (finalAlarmDateTime == null) {
+      return times;
+    }
+
+    DateTime currentTime = finalAlarmDateTime.subtract(
+      Duration(minutes: progressiveStartBefore),
+    );
+
+    while (currentTime.isBefore(finalAlarmDateTime)) {
+      times.add(currentTime);
+      currentTime = currentTime.add(Duration(minutes: progressiveInterval));
+    }
+    times.add(finalAlarmDateTime); // Add the final alarm time
+
+    return times;
   }
 
   static String timeUntilAlarm(TimeOfDay alarmTime, List<bool> days) {

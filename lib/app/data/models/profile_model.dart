@@ -54,6 +54,9 @@ class ProfileModel {
   late int guardianTimer;
   late String guardian;
   late bool isCall;
+  late bool isProgressiveEnabled;
+  late int progressiveInterval;
+  late int progressiveStartBefore;
   @ignore
   Map? offsetDetails;
 
@@ -101,7 +104,11 @@ class ProfileModel {
       required this.isGuardian,
       required this.guardianTimer,
       required this.guardian,
-      required this.isCall});
+      required this.isCall,
+      this.isProgressiveEnabled = false,
+      this.progressiveInterval = 5,
+      this.progressiveStartBefore = 30,
+      });
 
   ProfileModel.fromDocumentSnapshot({
     required firestore.DocumentSnapshot documentSnapshot,
@@ -167,6 +174,10 @@ class ProfileModel {
     guardianTimer = documentSnapshot['guardianTimer'];
     guardian = documentSnapshot['guardian'];
     isCall = documentSnapshot['isCall'];
+
+    isProgressiveEnabled = documentSnapshot['isProgressiveEnabled'] ?? false;
+    progressiveInterval = documentSnapshot['progressiveInterval'] ?? 5;
+    progressiveStartBefore = documentSnapshot['progressiveStartBefore'] ?? 30;
   }
 
   ProfileModel.fromMap(Map<String, dynamic> profileData) {
@@ -219,6 +230,10 @@ class ProfileModel {
     guardian = profileData['guardian'];
     isCall = profileData['isCall'];
     ringOn = profileData['ringOn'];
+
+    isProgressiveEnabled = profileData['isProgressiveEnabled'] == 1;
+    progressiveInterval = profileData['progressiveInterval'];
+    progressiveStartBefore = profileData['progressiveStartBefore'];
   }
 
   ProfileModel.fromJson(String profileData, UserModel? user) {
@@ -274,7 +289,10 @@ class ProfileModel {
       'guardianTimer': profileRecord.guardianTimer,
       'guardian': profileRecord.guardian,
       'isCall': profileRecord.isCall,
-      'ringOn': profileRecord.ringOn
+      'ringOn': profileRecord.ringOn,
+      'isProgressiveEnabled': profileRecord.isProgressiveEnabled ? 1 : 0,
+      'progressiveInterval': profileRecord.progressiveInterval,
+      'progressiveStartBefore': profileRecord.progressiveStartBefore,
     };
 
     if (profileRecord.isSharedAlarmEnabled) {

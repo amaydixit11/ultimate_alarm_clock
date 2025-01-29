@@ -59,6 +59,10 @@ class AlarmModel {
   late int guardianTimer;
   late String guardian;
   late bool isCall;
+  late bool isProgressiveEnabled;
+  late int progressiveInterval;
+  late int progressiveStartBefore;
+  late List<DateTime> progressiveAlarmTimes;
   @ignore
   Map? offsetDetails;
 
@@ -109,7 +113,12 @@ class AlarmModel {
       required this.isGuardian,
       required this.guardianTimer,
       required this.guardian,
-      required this.isCall});
+      required this.isCall,
+      required this.isProgressiveEnabled,
+      required this.progressiveInterval,
+      required this.progressiveStartBefore,
+      required this.progressiveAlarmTimes,
+      });
 
   AlarmModel.fromDocumentSnapshot({
     required firestore.DocumentSnapshot documentSnapshot,
@@ -179,6 +188,11 @@ class AlarmModel {
     guardianTimer = documentSnapshot['guardianTimer'];
     guardian = documentSnapshot['guardian'];
     isCall = documentSnapshot['isCall'];
+
+    isProgressiveEnabled = documentSnapshot['isProgressiveEnabled'];
+    progressiveInterval = documentSnapshot['progressiveInterval'];
+    progressiveStartBefore = documentSnapshot['progressiveStartBefore'];
+    progressiveAlarmTimes = List<DateTime>.from(documentSnapshot['progressiveAlarmTimes']);
   }
 
   AlarmModel fromMapSQFlite(Map<String, dynamic> map) {
@@ -231,7 +245,12 @@ class AlarmModel {
       guardian: map['guardian'],
       isCall: map['isCall'] == 1,
       ringOn: map['ringOn'] == 1,
+      isProgressiveEnabled: map['isProgressiveEnabled'] == 1,
+      progressiveInterval: map['progressiveInterval'],
+      progressiveStartBefore: map['progressiveStartBefore'],
+      progressiveAlarmTimes: List<DateTime>.from(jsonDecode(map['progressiveAlarmTimes'])),
     );
+    
   }
 
   Map<String, dynamic> toSQFliteMap() {
@@ -283,6 +302,10 @@ class AlarmModel {
       'guardianTimer': guardianTimer,
       'guardian': guardian,
       'isCall': isCall ? 1 : 0,
+      'isProgressiveEnabled': isProgressiveEnabled ? 1 : 0,
+      'progressiveInterval': progressiveInterval,
+      'progressiveStartBefore': progressiveStartBefore,
+      'progressiveAlarmTimes': progressiveAlarmTimes != null ? jsonEncode(progressiveAlarmTimes) : null,
     };
   }
 
@@ -338,6 +361,12 @@ class AlarmModel {
     guardian = alarmData['guardian'];
     isCall = alarmData['isCall'];
     ringOn = alarmData['ringOn'];
+
+    isProgressiveEnabled = alarmData['isProgressiveEnabled'];
+    progressiveInterval = alarmData['progressiveInterval'];
+    progressiveStartBefore = alarmData['progressiveStartBefore'];
+    progressiveAlarmTimes = List<DateTime>.from(alarmData['progressiveAlarmTimes']);
+
   }
 
   AlarmModel.fromJson(String alarmData, UserModel? user) {
@@ -395,7 +424,12 @@ class AlarmModel {
       'guardianTimer': alarmRecord.guardianTimer,
       'guardian': alarmRecord.guardian,
       'isCall': alarmRecord.isCall,
-      'ringOn': alarmRecord.ringOn
+      'ringOn': alarmRecord.ringOn,
+      'isProgressiveEnabled': alarmRecord.isProgressiveEnabled,
+      'progressiveInterval': alarmRecord.progressiveInterval,
+      'progressiveStartBefore': alarmRecord.progressiveStartBefore,
+      'progressiveAlarmTimes': alarmRecord.progressiveAlarmTimes,
+
     };
 
     if (alarmRecord.isSharedAlarmEnabled) {

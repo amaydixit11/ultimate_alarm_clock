@@ -733,6 +733,16 @@ class HomeController extends GetxController {
         guardianTimer: profileModel.value.guardianTimer,
         guardian: profileModel.value.guardian,
         isCall: profileModel.value.isCall,
-        ringOn: false);
+        ringOn: false,
+        isProgressiveEnabled: profileModel.value.isProgressiveEnabled,
+        progressiveInterval: profileModel.value.progressiveInterval,
+        progressiveStartBefore: profileModel.value.progressiveStartBefore,
+        progressiveAlarmTimes: Utils.calculateProgressiveAlarmTimes(
+          profileModel.value.progressiveInterval, 
+          profileModel.value.progressiveStartBefore, 
+          profileModel.value.isProgressiveEnabled, 
+          Utils.timeOfDayToDateTime(TimeOfDay.now()),
+        ),
+        );
   }
 }

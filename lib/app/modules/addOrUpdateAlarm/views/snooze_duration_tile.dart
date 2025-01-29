@@ -52,8 +52,7 @@ class SnoozeDurationTile extends StatelessWidget {
                           NumberPicker(
                             value: controller.snoozeDuration.value <= 0
                                 ? 1
-                                : controller.snoozeDuration
-                                    .value, // Handle 0 or negative values
+                                : controller.snoozeDuration.value,
                             minValue: 1,
                             maxValue: 1440,
                             onChanged: (value) {
