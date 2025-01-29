@@ -104,12 +104,12 @@ class Utils {
     return TimeOfDay(hour: hour, minute: minute);
   }
 
-  static DateTime stringToDate(String date){
+  static DateTime stringToDate(String date) {
     final parts = date.split('-');
     final day = int.parse(parts[2]);
     final month = int.parse(parts[1]);
     final year = int.parse(parts[0]);
-    return DateTime(year,month,day);
+    return DateTime(year, month, day);
   }
 
   static DateTime? stringToDateTime(String timeString) {
@@ -274,14 +274,18 @@ class Utils {
     return deg * (pi / 180);
   }
 
-  static List<DateTime> calculateProgressiveAlarmTimes(int progressiveInterval, int progressiveStartBefore, bool isProgressiveEnabled, DateTime alarmTime){
+  static List<DateTime> calculateProgressiveAlarmTimes(
+      int progressiveInterval,
+      int progressiveStartBefore,
+      bool isProgressiveEnabled,
+      DateTime alarmTime) {
     final List<DateTime> times = [];
     if (!isProgressiveEnabled || progressiveStartBefore <= 0) {
       return times;
     }
 
     final DateTime? finalAlarmDateTime = alarmTime;
-    
+
     // Return if the alarm time couldn't be parsed
     if (finalAlarmDateTime == null) {
       return times;

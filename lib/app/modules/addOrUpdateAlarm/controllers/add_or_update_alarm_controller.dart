@@ -788,7 +788,7 @@ class AddOrUpdateAlarmController extends GetxController {
       isQrEnabled.value = alarmRecord.value.isQrEnabled;
       qrValue.value = alarmRecord.value.qrValue;
       detectedQrValue.value = alarmRecord.value.qrValue;
-      
+
       isProgressiveEnabled.value = alarmRecord.value.isProgressiveEnabled;
       progressiveStartBefore.value = alarmRecord.value.progressiveStartBefore;
       progressiveInterval.value = alarmRecord.value.progressiveInterval;
@@ -1091,9 +1091,9 @@ class AddOrUpdateAlarmController extends GetxController {
       progressiveInterval: progressiveInterval.value,
       progressiveStartBefore: progressiveStartBefore.value,
       progressiveAlarmTimes: Utils.calculateProgressiveAlarmTimes(
-        progressiveInterval.value, 
-        progressiveStartBefore.value, 
-        isProgressiveEnabled.value, 
+        progressiveInterval.value,
+        progressiveStartBefore.value,
+        isProgressiveEnabled.value,
         selectedTime.value,
       ),
     );
@@ -1362,15 +1362,14 @@ class AddOrUpdateAlarmController extends GetxController {
       progressiveStartBefore: progressiveStartBefore.value,
     );
 
-    if(homeController.isProfileUpdate.value)
-      {
-        var profileId =
-        await IsarDb.profileId(homeController.selectedProfile.value);
-        print(profileId);
-        if (profileId != 'null') profileModel.isarId = profileId;
-        print(profileModel.isarId);
-        await IsarDb.updateAlarmProfiles(profileTextEditingController.text);
-      }
+    if (homeController.isProfileUpdate.value) {
+      var profileId =
+          await IsarDb.profileId(homeController.selectedProfile.value);
+      print(profileId);
+      if (profileId != 'null') profileModel.isarId = profileId;
+      print(profileModel.isarId);
+      await IsarDb.updateAlarmProfiles(profileTextEditingController.text);
+    }
     await IsarDb.addProfile(profileModel);
     homeController.selectedProfile.value = profileModel.profileName;
     storage.writeProfile(profileModel.profileName);

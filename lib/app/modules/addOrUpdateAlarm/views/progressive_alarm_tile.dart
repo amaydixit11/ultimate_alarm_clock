@@ -45,9 +45,11 @@ class ProgressiveAlarmTile extends StatelessWidget {
                 Utils.showModal(
                   context: context,
                   title: 'Progressive Alarms'.tr,
-                  description: 'Multiple alarms that ring at specified intervals before your final wake-up time to help you wake up gradually.',
+                  description:
+                      'Multiple alarms that ring at specified intervals before your final wake-up time to help you wake up gradually.',
                   iconData: Icons.alarm,
-                  isLightMode: themeController.currentTheme.value == ThemeMode.light,
+                  isLightMode:
+                      themeController.currentTheme.value == ThemeMode.light,
                 );
               },
             ),
@@ -92,7 +94,8 @@ class ProgressiveAlarmTile extends StatelessWidget {
                                 child: Text(
                                   'Enable Progressive Alarms'.tr,
                                   style: TextStyle(
-                                    color: themeController.primaryTextColor.value,
+                                    color:
+                                        themeController.primaryTextColor.value,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -105,7 +108,8 @@ class ProgressiveAlarmTile extends StatelessWidget {
                                   if (!value) {
                                     controller.progressiveStartBefore.value = 0;
                                   } else {
-                                    controller.progressiveStartBefore.value = 30;
+                                    controller.progressiveStartBefore.value =
+                                        30;
                                   }
                                 },
                               ),
@@ -123,7 +127,8 @@ class ProgressiveAlarmTile extends StatelessWidget {
                             color: themeController.primaryBackgroundColor.value,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: themeController.primaryTextColor.value.withOpacity(0.1),
+                              color: themeController.primaryTextColor.value
+                                  .withOpacity(0.1),
                             ),
                           ),
                           child: Column(
@@ -133,24 +138,29 @@ class ProgressiveAlarmTile extends StatelessWidget {
                                 context: context,
                                 title: 'Start Before Final Alarm'.tr,
                                 child: NumberPicker(
-                                  value: controller.progressiveStartBefore.value,
+                                  value:
+                                      controller.progressiveStartBefore.value,
                                   minValue: 5,
                                   maxValue: 180,
                                   step: 5,
                                   haptics: true,
                                   textStyle: TextStyle(
-                                    color: themeController.primaryTextColor.value.withOpacity(0.5),
+                                    color: themeController
+                                        .primaryTextColor.value
+                                        .withOpacity(0.5),
                                   ),
                                   selectedTextStyle: TextStyle(
-                                    color: controller.isProgressiveEnabled.value 
+                                    color: controller.isProgressiveEnabled.value
                                         ? themeController.primaryTextColor.value
-                                        : themeController.primaryTextColor.value.withOpacity(0.5),
+                                        : themeController.primaryTextColor.value
+                                            .withOpacity(0.5),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
                                   onChanged: (value) {
                                     Utils.hapticFeedback();
-                                    controller.progressiveStartBefore.value = value;
+                                    controller.progressiveStartBefore.value =
+                                        value;
                                   },
                                 ),
                                 suffix: 'minutes'.tr,
@@ -170,18 +180,22 @@ class ProgressiveAlarmTile extends StatelessWidget {
                                   step: 1,
                                   haptics: true,
                                   textStyle: TextStyle(
-                                    color: themeController.primaryTextColor.value.withOpacity(0.5),
+                                    color: themeController
+                                        .primaryTextColor.value
+                                        .withOpacity(0.5),
                                   ),
                                   selectedTextStyle: TextStyle(
-                                    color: controller.isProgressiveEnabled.value 
+                                    color: controller.isProgressiveEnabled.value
                                         ? themeController.primaryTextColor.value
-                                        : themeController.primaryTextColor.value.withOpacity(0.5),
+                                        : themeController.primaryTextColor.value
+                                            .withOpacity(0.5),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
                                   onChanged: (value) {
                                     Utils.hapticFeedback();
-                                    controller.progressiveInterval.value = value;
+                                    controller.progressiveInterval.value =
+                                        value;
                                   },
                                 ),
                                 suffix: 'minutes'.tr,
@@ -194,14 +208,17 @@ class ProgressiveAlarmTile extends StatelessWidget {
                         const SizedBox(height: 16),
 
                         // Preview Text
-                        if (controller.isProgressiveEnabled.value && controller.progressiveStartBefore.value > 0)
+                        if (controller.isProgressiveEnabled.value &&
+                            controller.progressiveStartBefore.value > 0)
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 24.0),
                             child: Text(
                               'Alarms will ring every ${controller.progressiveInterval.value} minutes, starting ${controller.progressiveStartBefore.value} minutes before your final alarm.',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: themeController.primaryTextColor.value.withOpacity(0.7),
+                                color: themeController.primaryTextColor.value
+                                    .withOpacity(0.7),
                                 fontSize: 12,
                               ),
                             ),
@@ -216,12 +233,12 @@ class ProgressiveAlarmTile extends StatelessWidget {
                             onPressed: () {
                               Utils.hapticFeedback();
                               Utils.calculateProgressiveAlarmTimes(
-                                intervalMinutes, 
-                                startBeforeMinutes, 
-                                true, 
-                                controller.selectedTime.value);
+                                intervalMinutes,
+                                startBeforeMinutes,
+                                true,
+                                controller.selectedTime.value,
+                              );
                               Get.back();
-
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kprimaryColor,
@@ -232,8 +249,12 @@ class ProgressiveAlarmTile extends StatelessWidget {
                             ),
                             child: Text(
                               'Done'.tr,
-                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: themeController.secondaryTextColor.value,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    color: themeController
+                                        .secondaryTextColor.value,
                                   ),
                             ),
                           ),
@@ -288,7 +309,7 @@ class ProgressiveAlarmTile extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: enabled 
+            color: enabled
                 ? themeController.primaryTextColor.value
                 : themeController.primaryTextColor.value.withOpacity(0.5),
             fontWeight: FontWeight.w500,
@@ -303,7 +324,7 @@ class ProgressiveAlarmTile extends StatelessWidget {
             Text(
               suffix,
               style: TextStyle(
-                color: enabled 
+                color: enabled
                     ? themeController.primaryTextColor.value
                     : themeController.primaryTextColor.value.withOpacity(0.5),
               ),
@@ -314,7 +335,8 @@ class ProgressiveAlarmTile extends StatelessWidget {
     );
   }
 
-  void _presetToInitial(int intervalMinutes, int startBeforeMinutes, bool isProgressiveEnabled) {
+  void _presetToInitial(
+      int intervalMinutes, int startBeforeMinutes, bool isProgressiveEnabled) {
     controller.progressiveInterval.value = intervalMinutes;
     controller.progressiveStartBefore.value = startBeforeMinutes;
     controller.isProgressiveEnabled.value = isProgressiveEnabled;

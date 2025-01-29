@@ -66,59 +66,59 @@ class AlarmModel {
   @ignore
   Map? offsetDetails;
 
-  AlarmModel(
-      {required this.alarmTime,
-      required this.alarmID,
-      this.sharedUserIds = const [],
-      required this.ownerId,
-      required this.ownerName,
-      required this.lastEditedUserId,
-      required this.mutexLock,
-      this.isEnabled = true,
-      required this.days,
-      required this.intervalToAlarm,
-      required this.isActivityEnabled,
-      required this.minutesSinceMidnight,
-      required this.isLocationEnabled,
-      required this.isSharedAlarmEnabled,
-      required this.isWeatherEnabled,
-      required this.location,
-      required this.weatherTypes,
-      required this.isMathsEnabled,
-      required this.mathsDifficulty,
-      required this.numMathsQuestions,
-      required this.isShakeEnabled,
-      required this.shakeTimes,
-      required this.isQrEnabled,
-      required this.qrValue,
-      required this.isPedometerEnabled,
-      required this.numberOfSteps,
-      required this.activityInterval,
-      this.offsetDetails = const {},
-      required this.mainAlarmTime,
-      required this.label,
-      required this.isOneTime,
-      required this.snoozeDuration,
-      required this.gradient,
-      required this.ringtoneName,
-      required this.note,
-      required this.deleteAfterGoesOff,
-      required this.showMotivationalQuote,
-      required this.volMax,
-      required this.volMin,
-      required this.activityMonitor,
-      required this.ringOn,
-      required this.alarmDate,
-      required this.profile,
-      required this.isGuardian,
-      required this.guardianTimer,
-      required this.guardian,
-      required this.isCall,
-      required this.isProgressiveEnabled,
-      required this.progressiveInterval,
-      required this.progressiveStartBefore,
-      required this.progressiveAlarmTimes,
-      });
+  AlarmModel({
+    required this.alarmTime,
+    required this.alarmID,
+    this.sharedUserIds = const [],
+    required this.ownerId,
+    required this.ownerName,
+    required this.lastEditedUserId,
+    required this.mutexLock,
+    this.isEnabled = true,
+    required this.days,
+    required this.intervalToAlarm,
+    required this.isActivityEnabled,
+    required this.minutesSinceMidnight,
+    required this.isLocationEnabled,
+    required this.isSharedAlarmEnabled,
+    required this.isWeatherEnabled,
+    required this.location,
+    required this.weatherTypes,
+    required this.isMathsEnabled,
+    required this.mathsDifficulty,
+    required this.numMathsQuestions,
+    required this.isShakeEnabled,
+    required this.shakeTimes,
+    required this.isQrEnabled,
+    required this.qrValue,
+    required this.isPedometerEnabled,
+    required this.numberOfSteps,
+    required this.activityInterval,
+    this.offsetDetails = const {},
+    required this.mainAlarmTime,
+    required this.label,
+    required this.isOneTime,
+    required this.snoozeDuration,
+    required this.gradient,
+    required this.ringtoneName,
+    required this.note,
+    required this.deleteAfterGoesOff,
+    required this.showMotivationalQuote,
+    required this.volMax,
+    required this.volMin,
+    required this.activityMonitor,
+    required this.ringOn,
+    required this.alarmDate,
+    required this.profile,
+    required this.isGuardian,
+    required this.guardianTimer,
+    required this.guardian,
+    required this.isCall,
+    required this.isProgressiveEnabled,
+    required this.progressiveInterval,
+    required this.progressiveStartBefore,
+    required this.progressiveAlarmTimes,
+  });
 
   AlarmModel.fromDocumentSnapshot({
     required firestore.DocumentSnapshot documentSnapshot,
@@ -192,7 +192,8 @@ class AlarmModel {
     isProgressiveEnabled = documentSnapshot['isProgressiveEnabled'];
     progressiveInterval = documentSnapshot['progressiveInterval'];
     progressiveStartBefore = documentSnapshot['progressiveStartBefore'];
-    progressiveAlarmTimes = List<DateTime>.from(documentSnapshot['progressiveAlarmTimes']);
+    progressiveAlarmTimes =
+        List<DateTime>.from(documentSnapshot['progressiveAlarmTimes']);
   }
 
   AlarmModel fromMapSQFlite(Map<String, dynamic> map) {
@@ -248,9 +249,9 @@ class AlarmModel {
       isProgressiveEnabled: map['isProgressiveEnabled'] == 1,
       progressiveInterval: map['progressiveInterval'],
       progressiveStartBefore: map['progressiveStartBefore'],
-      progressiveAlarmTimes: List<DateTime>.from(jsonDecode(map['progressiveAlarmTimes'])),
+      progressiveAlarmTimes:
+          List<DateTime>.from(jsonDecode(map['progressiveAlarmTimes'])),
     );
-    
   }
 
   Map<String, dynamic> toSQFliteMap() {
@@ -305,7 +306,9 @@ class AlarmModel {
       'isProgressiveEnabled': isProgressiveEnabled ? 1 : 0,
       'progressiveInterval': progressiveInterval,
       'progressiveStartBefore': progressiveStartBefore,
-      'progressiveAlarmTimes': progressiveAlarmTimes != null ? jsonEncode(progressiveAlarmTimes) : null,
+      'progressiveAlarmTimes': progressiveAlarmTimes != null
+          ? jsonEncode(progressiveAlarmTimes)
+          : null,
     };
   }
 
@@ -365,8 +368,8 @@ class AlarmModel {
     isProgressiveEnabled = alarmData['isProgressiveEnabled'];
     progressiveInterval = alarmData['progressiveInterval'];
     progressiveStartBefore = alarmData['progressiveStartBefore'];
-    progressiveAlarmTimes = List<DateTime>.from(alarmData['progressiveAlarmTimes']);
-
+    progressiveAlarmTimes =
+        List<DateTime>.from(alarmData['progressiveAlarmTimes']);
   }
 
   AlarmModel.fromJson(String alarmData, UserModel? user) {
@@ -429,7 +432,6 @@ class AlarmModel {
       'progressiveInterval': alarmRecord.progressiveInterval,
       'progressiveStartBefore': alarmRecord.progressiveStartBefore,
       'progressiveAlarmTimes': alarmRecord.progressiveAlarmTimes,
-
     };
 
     if (alarmRecord.isSharedAlarmEnabled) {

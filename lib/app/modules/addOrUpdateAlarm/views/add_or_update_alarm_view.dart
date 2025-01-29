@@ -186,10 +186,14 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                                 controller.contactTextEditingController.text,
                             isCall: controller.isCall.value,
                             ringOn: controller.isFutureDate.value,
-                            isProgressiveEnabled: controller.isProgressiveEnabled.value,
-                            progressiveStartBefore: controller.progressiveStartBefore.value,
-                            progressiveInterval: controller.progressiveInterval.value,
-                            progressiveAlarmTimes: controller.progressiveAlarmTimes,
+                            isProgressiveEnabled:
+                                controller.isProgressiveEnabled.value,
+                            progressiveStartBefore:
+                                controller.progressiveStartBefore.value,
+                            progressiveInterval:
+                                controller.progressiveInterval.value,
+                            progressiveAlarmTimes:
+                                controller.progressiveAlarmTimes,
                           );
 
                           // Adding offset details to the database if
@@ -341,7 +345,7 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                                     child: inputTimeController
                                             .isTimePicker.value
                                         ? Obx(
-                                            () => Row(            
+                                            () => Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
@@ -607,7 +611,8 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                                                     },
                                                     itemWidth: width * 0.17,
                                                     selectedTextStyle: Theme.of(
-                                                            context)
+                                                      context,
+                                                    )
                                                         .textTheme
                                                         .displayLarge!
                                                         .copyWith(
@@ -746,7 +751,8 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                                                   onChanged: (getPeriod) {
                                                     inputTimeController
                                                         .changePeriod(
-                                                            getPeriod!);
+                                                      getPeriod!,
+                                                    );
 
                                                     inputTimeController
                                                         .setTime();
@@ -778,7 +784,8 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                                                     ),
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            5.0),
+                                                      5.0,
+                                                    ),
                                                     child: const Icon(
                                                       Icons.done,
                                                       color: kprimaryColor,
