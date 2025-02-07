@@ -5,6 +5,7 @@ import 'package:ultimate_alarm_clock/app/modules/addOrUpdateAlarm/controllers/ad
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
+import 'package:ultimate_alarm_clock/app/utils/widgets/action_button.dart';
 
 class SnoozeDurationTile extends StatelessWidget {
   const SnoozeDurationTile({
@@ -69,27 +70,7 @@ class SnoozeDurationTile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Utils.hapticFeedback();
-                          Get.back();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kprimaryColor,
-                        ),
-                        child: Text(
-                          'Done'.tr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: themeController.secondaryTextColor.value,
-                              ),
-                        ),
-                      ),
-                    ),
+                    ActionButton(buttonText: 'Done'.tr,),
                   ],
                 ),
               ),

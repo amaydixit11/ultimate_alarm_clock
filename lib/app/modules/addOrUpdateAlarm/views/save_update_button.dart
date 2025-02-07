@@ -24,20 +24,20 @@ class SaveUpdateButton extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
 
     return ActionButton(
-      buttonText: controller.alarmRecord.value.alarmID == '' ? 'Save'.tr : 'Update'.tr,
+      buttonText:
+          controller.alarmRecord.value.alarmID == '' ? 'Save'.tr : 'Update'.tr,
       onPressed: () async {
         await _handlePermissionAndNavigate();
 
         if (await _checkPermissions()) {
           if (!controller.homeController.isProfile.value) {
             await _saveOrUpdateAlarm();
-            } else {
-              _createProfileIfNeeded();
-            }
+          } else {
+            _createProfileIfNeeded();
           }
-        },
-
-      );
+        }
+      },
+    );
   }
 
   Future<bool> _checkPermissions() async {

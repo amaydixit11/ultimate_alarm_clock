@@ -6,6 +6,7 @@ import 'package:ultimate_alarm_clock/app/modules/addOrUpdateAlarm/controllers/ad
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
+import 'package:ultimate_alarm_clock/app/utils/widgets/action_button.dart';
 
 class AscendingVolumeTile extends StatelessWidget {
   const AscendingVolumeTile({
@@ -87,21 +88,7 @@ class AscendingVolumeTile extends StatelessWidget {
                     max: 10.0,
                     divisions: 10,
                   ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kprimaryColor,
-                    ),
-                    child: Text(
-                      'Apply Gradient'.tr,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: themeController.secondaryTextColor.value,
-                          ),
-                    ),
-                  ),
+                  ActionButton(buttonText: 'Apply Gradient'.tr,),
                 ],
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:ultimate_alarm_clock/app/modules/addOrUpdateAlarm/controllers/ad
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
+import 'package:ultimate_alarm_clock/app/utils/widgets/action_button.dart';
 
 class PedometerChallenge extends StatelessWidget {
   const PedometerChallenge({
@@ -95,34 +96,7 @@ class PedometerChallenge extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Utils.hapticFeedback();
-                              Get.back();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: kprimaryColor,
-                              // Set the desired background color
-                            ),
-                            child: Text(
-                              'Done'.tr,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(
-                                    color: themeController.secondaryTextColor.value,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: ActionButton(buttonText: 'Done'.tr,),
                   ),
                 ],
               ),

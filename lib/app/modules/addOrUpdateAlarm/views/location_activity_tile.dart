@@ -5,6 +5,7 @@ import 'package:ultimate_alarm_clock/app/modules/addOrUpdateAlarm/controllers/ad
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
+import 'package:ultimate_alarm_clock/app/utils/widgets/action_button.dart';
 
 class LocationTile extends StatelessWidget {
   const LocationTile({
@@ -132,20 +133,9 @@ class LocationTile extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    TextButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(kprimaryColor),
-                      ),
-                      child: Text(
-                        'Save',
-                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                              color: themeController.secondaryTextColor.value,
-                            ),
-                      ),
+                    ActionButton(
+                      buttonText: 'Save', 
                       onPressed: () {
-                        Utils.hapticFeedback();
-                        Get.back();
                         controller.isLocationEnabled.value = true;
                       },
                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
 import 'package:ultimate_alarm_clock/app/utils/utils.dart';
+import 'package:ultimate_alarm_clock/app/utils/widgets/action_button.dart';
 
 import '../../settings/controllers/theme_controller.dart';
 import '../controllers/add_or_update_alarm_controller.dart';
@@ -58,34 +59,7 @@ class RepeatTile extends StatelessWidget {
                       const SizedBox(
                         height: 25,
                       ),
-                      SizedBox(
-                        width: width,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 25, right: 25, bottom: 25),
-                          child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                kprimaryColor,
-                              ),
-                            ),
-                            onPressed: () {
-                              Utils.hapticFeedback();
-                              Get.back();
-                            },
-                            child: Text(
-                              'Done',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(
-                                    color: controller.themeController
-                                        .secondaryTextColor.value,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      ActionButton(buttonText: 'Done'.tr,),
                     ],
                   ),
                 );
@@ -289,34 +263,7 @@ class RepeatTile extends StatelessWidget {
                     dayName: 'Sunday'.tr,
                     context: context,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Utils.hapticFeedback();
-                            Get.back();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: kprimaryColor,
-                          ),
-                          child: Text(
-                            'Done'.tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                  color:
-                                      themeController.secondaryTextColor.value,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  ActionButton(buttonText: 'Done'.tr,),
                 ],
               ),
             );
